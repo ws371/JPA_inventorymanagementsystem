@@ -1,14 +1,19 @@
 package com.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CATEGORY_ID;
     private String CATEGORY_NAME;
     private String DESCRIPTION;
+
+    @OneToMany(mappedBy="category")
+    private List<Product> Product;
+
     public int getCATEGORY_ID() {
         return CATEGORY_ID;}
     public void setCATEGORY_ID(int CATEGORY_ID) {
