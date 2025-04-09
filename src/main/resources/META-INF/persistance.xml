@@ -8,9 +8,9 @@
     <persistence-unit name="JPA-PU">
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="{your_route}"/>
-            <property name="javax.persistence.jdbc.user" value="{your_user}"/>
-            <property name="javax.persistence.jdbc.password" value="{your_pw}"/>
+            <property name="javax.persistence.jdbc.url" value=/>
+            <property name="javax.persistence.jdbc.user" value=/>
+            <property name="javax.persistence.jdbc.password" value=/>
         </properties>
     </persistence-unit>
 </persistence>
