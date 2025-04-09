@@ -1,70 +1,106 @@
 package com.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int PRODUCT_ID;
-    private String PRODUCT_NAME;
-    private BigDecimal PRICE;
-    private int STOCK_QUANTITY;
-    private int REORDER_LEVEL;
-    private String DESCRIPTION;
+    private int productId;
+
+    private String productName;
+    private BigDecimal price;
+    private int stockQuantity;
+    private int reorderLevel;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
+    @JsonIgnoreProperties("products")
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "SUPPLIER_ID", nullable = false)
+    @JsonIgnoreProperties("products")
     private Supplier supplier;
 
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public int getReorderLevel() {
+        return reorderLevel;
+    }
+
+    public void setReorderLevel(int reorderLevel) {
+        this.reorderLevel = reorderLevel;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Category getCategory() {
-        return category;}
+        return category;
+    }
+
     public void setCategory(Category category) {
-        this.category = category;}
+        this.category = category;
+    }
 
     public Supplier getSupplier() {
-        return supplier;}
+        return supplier;
+    }
+
     public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;}
+        this.supplier = supplier;
+    }
 
-    public int getPRODUCT_ID() {
-        return PRODUCT_ID;}
-    public void setPRODUCT_ID(int PRODUCT_ID) {
-        this.PRODUCT_ID = PRODUCT_ID;}
-    public String getPRODUCT_NAME() {
-        return PRODUCT_NAME;}
-    public void setPRODUCT_NAME(String PRODUCT_NAME) {
-        this.PRODUCT_NAME = PRODUCT_NAME;}
-    public BigDecimal getPRICE() {
-        return PRICE;}
-    public void setPRICE(BigDecimal PRICE) {
-        this.PRICE = PRICE;}
-    public int getSTOCK_QUANTITY() {
-        return STOCK_QUANTITY;}
-    public void setSTOCK_QUANTITY(int STOCK_QUANTITY) {
-        this.STOCK_QUANTITY = STOCK_QUANTITY;}
-    public int getREORDER_LEVEL() {
-        return REORDER_LEVEL;}
-    public void setREORDER_LEVEL(int REORDER_LEVEL) {
-        this.REORDER_LEVEL = REORDER_LEVEL;}
-    public String getDESCRIPTION() {
-        return DESCRIPTION;}
-    public void setDESCRIPTION(String DESCRIPTION) {
-        this.DESCRIPTION = DESCRIPTION;}
-
+    @Override
     public String toString() {
-        return "Product [product_id=" + PRODUCT_ID +
-                ", product_name=" + PRODUCT_NAME +
-                ", category_id=" + category.getCATEGORY_ID() +
-                ", supplier_id=" + supplier.getSUPPLIER_ID() +
-                ", price=" + PRICE +
-                ", stock_quantity=" + STOCK_QUANTITY +
-                ", reorder_level=" + REORDER_LEVEL +
-                ", description=" + DESCRIPTION + "]";
+        return "Product [productId=" + productId +
+                ", productName=" + productName +
+                ", categoryId=" + (category != null ? category.getCategoryId() : "null") +
+                ", supplierId=" + (supplier != null ? supplier.getSupplierId() : "null") +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                ", reorderLevel=" + reorderLevel +
+                ", description=" + description + "]";
     }
 }
